@@ -1,0 +1,29 @@
+{
+  "name": "fc-web1",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ugarcia/fc-web1",
+  "authors": [
+    "unai <unai.gg77@gmail.com>"
+  ],
+  "description": "Frontcoder new website as of 2015-05",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "fc",
+    "frontcoder"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "bootstrap": "~3.3.4",
+    "marionette": "~2.4.1"
+  }
+}
