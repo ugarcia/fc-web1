@@ -1,10 +1,9 @@
 define 'app/main', [
     'app/Application'
-    'app/routers/MainRouter'
-    'app/views/MainView'
+    'app/modules/main/Module'
 ], (
     Application
-    MainRouter
-    MainView
+    MainModule
 ) ->
-  Application.start()
+
+    Application.start()        
