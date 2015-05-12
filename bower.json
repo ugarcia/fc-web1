@@ -27,6 +27,7 @@
     "marionette": "~2.4.1",
     "requirejs": "~2.1.17",
     "modernizr": "~2.8.3",
-    "requirejs-tpl": "*"
+    "requirejs-tpl": "*",
+    "wp-api-js": "WP-API/client-js"
   }
 }

@@ -25,7 +25,9 @@ define 'app/controllers/Default', [
         home: ->
             @initLayout()
             @layout.getRegion('header').show new Header
-            @layout.getRegion('content').show new Content
+            post = new wp.api.models.Post ID: 1
+            post.fetch().done =>
+                @layout.getRegion('content').show new Content model: post
 
         initLayout: ->
             if not @layout

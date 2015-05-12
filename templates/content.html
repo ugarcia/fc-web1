@@ -7,4 +7,8 @@
         cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
         proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
     </p>
+
+    <h1><%= model.title %></h1>
+    <h4><%= model.author.attributes.username.name %><span><%= new Date(model.date).toISOString() %></span></h4>
+    <div><%= model.content %></div>
 </div>
