@@ -7,56 +7,72 @@ module.exports = (grunt) ->
       css:
         options:
           strictUnits: true
-        src:  'less/**/*.less'
-        dest: 'css/styles.css'
+        src:  'app/**/*.less'
+        dest: 'app/css/styles.css'
     
     myth:
       css:
-        src:  'css/styles.css'
-        dest: 'css/styles.css'
+        src:  'app/css/styles.css'
+        dest: 'app/css/styles.css'
 
     cssmin:
       css:
         files:
-          'css/styles.css': ['css/styles.css']
+          'app/css/styles.css': ['app/css/styles.css']
 
     watch:
       less:
-        files: ['less/**/*.less']
+        files: ['app/**/*.less']
         tasks: ['css']
       coffee:
-        files: ['coffee/**/*']
+        files: ['app/**/*.coffee']
         tasks: ['js']
 
     coffee:
-      compile:
+      app:
         expand: true
         flatten: false
-        cwd: 'coffee/'
+        cwd: 'app/coffee/'
         src: ['**/*.coffee']
-        dest: 'js/'
+        dest: 'app/js/'
+        ext: '.js'
+      main:
+        expand: true
+        flatten: false
+        cwd: 'app/modules/main/coffee/'
+        src: ['**/*.coffee']
+        dest: 'app/modules/main/js/'
+        ext: '.js'
+      cms:
+        expand: true
+        flatten: false
+        cwd: 'app/modules/cms/coffee/'
+        src: ['**/*.coffee']
+        dest: 'app/modules/cms/js/'
         ext: '.js'
 
     requirejs:
       compile:
         options:
-          appDir: "."
+          appDir: "app"
           baseUrl: "."
           dir: "./build"
           modules: [
               {
-                  name: "js/startup"
+                  name: "app/js/startup"
               }
           ]
           removeCombined: true
           preserveLicenseComments: false
           paths:
+            modernizr: 'bower_components/modernizr/modernizr'
             jquery: "bower_components/jquery/dist/jquery.min"
             bootstrap: "bower_components/bootstrap/dist/js/bootstrap.min"
             underscore: "bower_components/underscore/underscore"
             backbone: 'bower_components/backbone/backbone'
             marionette: 'bower_components/marionette/lib/backbone.marionette.min'
-            app: 'js'
+            tpl: 'bower_components/requirejs-tpl/tpl'
+            app: 'app'
           shim:
             bootstrap:
               deps: ['jquery']
@@ -69,7 +85,6 @@ module.exports = (grunt) ->
               deps: ["backbone"]
               exports: "Marionette"
             
-
     copy:
       build:
         files: [
@@ -130,7 +145,9 @@ module.exports = (grunt) ->
   ]
 
   grunt.registerTask 'js', [
-    'coffee:compile'
+    'coffee:app'
+    'coffee:main'
+    'coffee:cms'
   ]
 
   grunt.registerTask 'build', [
