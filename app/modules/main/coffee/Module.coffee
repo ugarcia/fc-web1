@@ -8,4 +8,3 @@ define 'app/modules/main/js/Module', ['app/js/Application', 'app/modules/main/js
         Module.on 'start', -> 
             console.log "Module #{@moduleName} Started", Module
             Module.routers.DefaultRouter.controller.initLayout()
-
