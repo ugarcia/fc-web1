@@ -1,9 +1,19 @@
-define 'app/modules/cms/js/Module', ['app/js/Application', 'app/modules/cms/js/routers/Default'], (Application, DefaultRouter) ->
+define 'app/modules/cms/js/Module', ['marionette', 'app/js/Application', 'app/modules/cms/js/routers/Default'], (Marionette, Application, DefaultRouter) ->
 
-    Application.module "CMS", (Module, Application, Backbone, Marionette, $, _) ->
+    class CMSModule extends Marionette.Module
 
-        Module.routers or= {}
-        Module.routers.DefaultRouter = new DefaultRouter
+        channelName: 'cms'
 
-        Module.on 'start', -> 
-            console.log "Module #{@moduleName} Started", Module
+        startWithParent: true
+
+        initialize: (options, moduleName, app) ->
+            @channelName = options?.channelName or @channelName
+            @routers or= {}
+            @routers.DefaultRouter = new DefaultRouter  channelName: @channelName
+            
+        onStart: (options) ->
+            console.log "Module #{@moduleName} Started", @
+
+        onStop: (options) ->
+
+    Application.module "CMS", CMSModule

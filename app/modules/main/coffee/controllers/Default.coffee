@@ -14,7 +14,7 @@ define 'app/modules/main/js/controllers/Default', [
     Content
 ) ->
 
-    Marionette.Controller.extend
+    class Default extends Marionette.Controller
 
         layout: null
 

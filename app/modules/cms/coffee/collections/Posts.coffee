@@ -1,6 +1,6 @@
 define 'app/modules/cms/js/collections/Posts', ['backbone', 'app/modules/cms/js/api/API', 'app/modules/cms/js/models/Post'], (Backbone, API, Model) ->
 
-    Backbone.Collection.extend
+    class Posts extends Backbone.Collection
 
         # @property The model associated with collection
         model: Model

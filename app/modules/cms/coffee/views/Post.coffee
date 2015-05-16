@@ -1,12 +1,25 @@
-define 'app/modules/cms/js/views/Post', ['marionette', 'tpl!app/modules/cms/templates/post.html'], (Marionette, tpl) ->
+define 'app/modules/cms/js/views/Post', ['marionette', 'wreqr', 'tpl!app/modules/cms/templates/post.html'], (Marionette, Wreqr, tpl) ->
 
-    Marionette.ItemView.extend
+    class Post extends Marionette.ItemView
+
+        channelName: 'cms'
+
+        vent: null
+
+        options: null
 
         template: (model) => tpl model: model or {}
 
+        modelEvents:
+            'change': 'render'
+
         events:
-            'click button': 'buttonClickHandler'
-            
-        buttonClickHandler: (evt) ->
-            alert "CLicked COOOONTENT!!!!!!!!"
-            console.log evt
+            'click .fc-post-edit-trigger': 'editPostHandler'
+
+        initialize: (@options) ->
+            @channelName = @options?.channelName or @channelName
+            @vent = Wreqr.radio.channel(@channelName).vent            
+
+        editPostHandler: (evt) ->
+            @vent.trigger 'modal:open:post', model: @model
+

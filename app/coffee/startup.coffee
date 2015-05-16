@@ -5,7 +5,9 @@ require.config
         bootstrap: '/bower_components/bootstrap/dist/js/bootstrap.min'
         underscore: '/bower_components/underscore/underscore'
         backbone: '/bower_components/backbone/backbone'
+        wreqr: '/bower_components/backbone.wreqr/lib/backbone.wreqr.min'
         marionette: '/bower_components/marionette/lib/backbone.marionette.min'
+        ckeditor: '/bower_components/ckeditor/ckeditor'
         tpl: '/bower_components/requirejs-tpl/tpl'
         app: '/app'
     shim:

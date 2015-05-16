@@ -1,6 +1,6 @@
 define 'app/modules/cms/js/models/Post', ['backbone', 'app/modules/cms/js/api/API'], (Backbone, API) ->
 
-    Backbone.Model.extend
+    class Post extends Backbone.Model
     
         # @property The default attributes for the Model
         defaults:
@@ -34,5 +34,21 @@ define 'app/modules/cms/js/models/Post', ['backbone', 'app/modules/cms/js/api/AP
         # @return [Object] Asynchronous response to Backbone system in order to perform the action to the model
         sync: (method, model, options) ->
             switch method 
+
                 when "read"
-                    API.getPost(@id).then (res) -> options.success res.post              
+                    API.getPost(@id).then (res) -> options.success res.post
+
+                when "create"
+                    formData = new FormData
+                    # FIXME: Acthung, setting to published here!!
+                    formData.append 'status', 'publish'
+                    formData.append 'title', model.get 'title'
+                    formData.append 'content', model.get 'content'
+                    API.createPost(formData).then (res) -> options.success res.post
+
+                 when "update"
+                    formData = new FormData
+                    formData.append 'id', model.get 'id'
+                    formData.append 'title', model.get 'title'
+                    formData.append 'content', model.get 'content'
+                    API.updatePost(formData).then (res) -> options.success res.post         

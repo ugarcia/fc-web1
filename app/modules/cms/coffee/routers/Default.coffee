@@ -1,9 +1,9 @@
 define 'app/modules/cms/js/routers/Default', ['marionette', 'app/modules/cms/js/controllers/Default'], (Marionette, Controller) ->
 
-    Marionette.AppRouter.extend
+    class Default extends Marionette.AppRouter
 
-        controller: new Controller
+        controller: new Controller channelName: @options?.channelName
         
         appRoutes:
             "posts": "showPosts"
-            "post/:id": "showPost"
+            "posts/:id": "showPost"

@@ -1,6 +1,6 @@
 define 'app/modules/main/js/views/Layout', ['marionette'], (Marionette) ->
 
-    Marionette.LayoutView.extend
+    class Layout extends Marionette.LayoutView
 
         template: false
 

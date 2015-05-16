@@ -1,5 +1,6 @@
 <article>
         <h1><%= model.title %></h1>
-        <h4><%= model.author.name %><span><%= model.date %></span></h4>
+        <h4><%= model.author && model.author.name %><span><%= model.date %></span></h4>
         <div><%= model.content %></div>
+        <button class="fc-button fc-post-edit-trigger btn btn-md btn-success" data-toggle="modal" data-target=".fc-modal">Edit</button>
 </article>

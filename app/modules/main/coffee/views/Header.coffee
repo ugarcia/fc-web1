@@ -1,6 +1,6 @@
 define 'app/modules/main/js/views/Header', ['marionette', 'app/js/Application', 'tpl!app/modules/main/templates/header.html'], (Marionette, Application, tpl) ->
 
-    Marionette.ItemView.extend
+    class Header extends Marionette.ItemView
 
         template: (model) -> tpl model: model or {}
 

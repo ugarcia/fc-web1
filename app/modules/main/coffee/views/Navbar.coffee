@@ -1,6 +1,6 @@
 define 'app/modules/main/js/views/Navbar', ['marionette', 'tpl!app/modules/main/templates/navbar.html'], (Marionette, tpl) ->
 
-    Marionette.ItemView.extend
+    class Navbar extends Marionette.ItemView
 
         template: (model) -> tpl model: model
 

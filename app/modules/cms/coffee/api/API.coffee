@@ -253,8 +253,6 @@ define 'app/modules/cms/js/api/API', ['jquery', 'underscore'], ($, _) ->
     # @param postdata [FormData] A form object containing the post data
     # @option postdata [String] title The post title
     # @option postdata [String] content The post content
-    # @option postdata [String] name The author name
-    # @option postdata [String] email The author email
     # @option postdata [String] tags [optional] The post tags, separated with spaces
     # @option postdata [Blob] attachment [optional] A file(blob) attachment for the post
     # @return [Object] A Promise with the JSON response from the server
@@ -276,6 +274,34 @@ define 'app/modules/cms/js/api/API', ['jquery', 'underscore'], ($, _) ->
           processData: false
           contentType: false
         ).then (res) -> res
+
+    # Updates a post
+    # @param postdata [FormData] A form object containing the post data
+    # @option postdata [Integer] id The post id    
+    # @option postdata [String] title The post title
+    # @option postdata [String] content The post content
+    # @option postdata [String] tags [optional] The post tags, separated with spaces
+    # @option postdata [Blob] attachment [optional] A file(blob) attachment for the post
+    # @return [Object] A Promise with the JSON response from the server
+    # @note The Wordpress JSON API needs the name and email parameters to be sent to work (hope they fix it)
+    # @example Post a thought:
+    #     formData = new FormData
+    #     formData.append 'title', 'my thought'
+    #     formData.append 'content', 'I think this is a simple post'
+    #     formData.append 'tags', 'thought, post, sample'
+    #     formData.append 'name', 'Me'
+    #     formData.append 'email', 'it@is.me'
+    #     updatePost formData
+    #       .then (response) -> console.log "Updated: ", response.post.title
+    updatePost: (postdata) ->
+      throw new Error("postdata isn't FormData!") unless postdata instanceof FormData
+      @getNonce('posts', 'update_post').then (nonce) =>
+        postdata.append 'nonce', nonce
+        @call( "POST", "posts", "update_post", postdata,
+          processData: false
+          contentType: false
+        ).then (res) -> res
+
 
     # Submits a new comment for a given post
     # @param commentdata [Object] An object containing the comment data

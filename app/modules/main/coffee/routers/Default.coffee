@@ -1,6 +1,6 @@
 define 'app/modules/main/js/routers/Default', ['marionette', 'app/modules/main/js/controllers/Default'], (Marionette, Controller) ->
 
-    Marionette.AppRouter.extend
+    class Default extends Marionette.AppRouter
 
         controller: new Controller
         

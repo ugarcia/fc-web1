@@ -17,5 +17,5 @@ define 'app/js/Application', ['backbone', 'marionette'], (Backbone, Marionette) 
                     pushState: true
                     root: '/'
 
-    window.Application or= new Application name: 'Frontcoder Web'
+    window.Application or= new Application name: 'Frontcoder Web', channelName: 'app'
 
