@@ -491,13 +491,19 @@ define 'app/modules/cms/js/api/API', ['jquery', 'underscore'], ($, _) ->
       @call('GET', 'quests', 'gimmi_dat_quest').then (res) -> res
 
 
+    # Requests authentication/data from current user
+    # @return [Object] A Promise with the JSON response from the server
+    # @example Get my data:
+    #     whoami
+    #       .then (response) -> console.log response.user_id, response.user.first_name
+    checkAuth: -> @call('GET', 'auth', 'check_auth').then (res) -> res
 
     # Requests authentication/data from current user
     # @return [Object] A Promise with the JSON response from the server
     # @example Get my data:
     #     whoami
     #       .then (response) -> console.log response.user_id, response.user.first_name
-    whoami: -> @call('GET', 'users','whoami').then (res) -> res
+    whoami: -> @call('GET', 'users', 'whoami').then (res) -> res
 
     # Requests login for current user
     # @param data [Object] An object with the authentication data

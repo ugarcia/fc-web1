@@ -64,3 +64,6 @@ define 'app/modules/cms/js/controllers/Default', [
                 @layout = new Layout
                 @layout.render()
                 @layout.getRegion('header').show new Header channelName: @channelName
+
+        checkAuth: (fn) ->
+            API.checkAuth().then (res) -> fn res       

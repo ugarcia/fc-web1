@@ -13,7 +13,12 @@ define 'app/modules/cms/js/Module', ['marionette', 'app/js/Application', 'app/mo
             
         onStart: (options) ->
             console.log "Module #{@moduleName} Started", @
+            @checkAuth()
 
         onStop: (options) ->
+
+        # TODO: Improve/refactor this skeleton ...
+        checkAuth: ->
+            @routers.DefaultRouter.controller.checkAuth (info) -> console.log info
 
     Application.module "CMS", CMSModule
