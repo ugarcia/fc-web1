@@ -1,0 +1,7 @@
+<article>
+        <h1><%= model.title %></h1>
+        <img src="<%= model.img %>" caption="<%= model.caption %>" title="<%= model.caption %>" alt="<%= model.caption %>">
+        <h4><%= model.author && model.author.name %><span><%= model.date %></span></h4>
+        <div><%= model.content %></div>
+        <a href="<%= model.link %>"></a>
+</article>
