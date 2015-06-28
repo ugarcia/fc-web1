@@ -8,5 +8,4 @@ define 'app/modules/main/js/views/Navbar', ['marionette', 'tpl!app/modules/main/
             'click button': 'buttonClickHandler'
             
         buttonClickHandler: (evt) ->
-            alert "CLicked!!!!"
             console.log evt

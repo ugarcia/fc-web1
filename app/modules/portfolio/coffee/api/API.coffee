@@ -18,23 +18,6 @@ define 'app/modules/portfolio/js/api/API', ['jquery', 'underscore'], ($, _) ->
   # @see http://wordpress.org/plugins/json-api/other_notes/
   class API
 
-    # Requests an one-use hash (nonce) for a subsequent request to the server.
-    # This is intended as a security rule.
-    # @param controller [String] A controller in the JSON API 
-    # @param method [String] A method defined for the controller above
-    # @return [Object] A Promise with the JSON response from the server
-    # @example Get a nonce for submitting a post:
-    #     getNonce 'core', 'submit_post'
-    #       .then (response) -> submit_the_post response.nonce, post_data
-    getNonce: (controller, method) ->
-      throw new Error("No controller specified!") unless controller
-      throw new Error("No method specified!") unless method
-      @call( 'GET', "core", "get_nonce",
-        controller: controller
-        method: method
-      )
-      .then (res) -> res.nonce
-
     # Parameterized method for generical requests.
     # @param method [String] The HTTP method (GET, POST, ...)
     # @param controller [String] A controller in the JSON API 
@@ -73,36 +56,6 @@ define 'app/modules/portfolio/js/api/API', ['jquery', 'underscore'], ($, _) ->
         console.info( "API call succeeded:", res ) if DEBUG
       d.promise()
 
-    # Dumps out to the console all available info about the server JSON API
-    # @example
-    #     getInfo()
-    #     > API Version 1.1.1with 8 controllers active
-    #           Core
-    #             Basic introspection methods
-    #             Methods
-    #               get_recent_posts
-    #               get_posts
-    #                ......
-    #           Posts
-    #             Data manipulation methods for posts
-    #             Methods
-    #               create_post
-    #               update_post
-    #            ...... 
-    getInfo: () ->
-      @call( 'GET', "core", "info").then (res) => 
-        $.when.apply($, res.controllers.map (ctlr) => @call  'GET', "core", "info", controller: ctlr )
-        .then () ->
-          console.groupCollapsed "API Version " + res.json_api_version + " with " + res.controllers.length + " controllers active";
-          _.each arguments, (res) ->
-            console.groupCollapsed res.name
-            console.log res.description
-            console.group "Methods"
-            _.each res.methods, (name) -> console.log name
-            console.groupEnd()
-            console.groupEnd()
-          console.groupEnd()
-
     # Requests a page of posts of certain type 
     # @param count [Integer] The number of posts to request
     # @param page [Integer] The page number to request
@@ -123,6 +76,5 @@ define 'app/modules/portfolio/js/api/API', ['jquery', 'underscore'], ($, _) ->
     #       .then (response) -> alert response.post.title, response.post.content
     getPortfolioItem: (id) ->
       @call( 'GET', "portfolio", "get_portfolio_item", id: id).then (res)-> res
-
 
   new API;

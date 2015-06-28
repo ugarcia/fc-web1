@@ -1,4 +1,8 @@
-define 'app/modules/portfolio/js/collections/Portfolio', ['backbone', 'app/modules/portfolio/js/api/API', 'app/modules/portfolio/js/models/PortfolioItem'], (Backbone, API, Model) ->
+define 'app/modules/portfolio/js/collections/Portfolio', [
+  'backbone'
+  'app/modules/portfolio/js/api/API'
+  'app/modules/portfolio/js/models/PortfolioItem'
+], (Backbone, API, Model) ->
 
     class Portfolio extends Backbone.Collection
 
@@ -10,7 +14,7 @@ define 'app/modules/portfolio/js/collections/Portfolio', ['backbone', 'app/modul
 
         # Initialization method called on object creation
         initialize: ->
-            @comparator = (m1, m2) -> if m1.get('id')<m2.get('id') then 1 else if m1.get('id')>m2.get('id') then -1 else 0
+            @comparator = (m1, m2) -> m1.get('id') - m2.get('id')
 
         # Overrided Backbone sync for a non Restful API
         # @param method [String] The CRUD action method for the model data: 'create', 'read', 'update' or 'delete' 
@@ -20,12 +24,6 @@ define 'app/modules/portfolio/js/collections/Portfolio', ['backbone', 'app/modul
         # @option options [Function] error Callback for an error response, with (model, xhr, options) arguments
         # @return [Object] Asynchronous response to Backbone system in order to perform the action to the model
         sync: (method, model, options) ->
-            count = options.data?.count
-            page = options.data?.page
-            type = options.data?.type
-            apiMethod = options.data?.method
-            id = options.data?.id
-            # console.log options
-            switch method 
+            switch method
                 when "read"
                     API.getPortfolio().then (res) => options.success res.items

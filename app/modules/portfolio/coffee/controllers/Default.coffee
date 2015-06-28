@@ -1,7 +1,6 @@
 define 'app/modules/portfolio/js/controllers/Default', [
     'marionette'
     'wreqr'
-    'app/modules/portfolio/js/api/API'
     'app/modules/portfolio/js/views/Layout'
     'app/modules/portfolio/js/views/Header'
     'app/modules/portfolio/js/views/PortfolioItem'
@@ -11,7 +10,6 @@ define 'app/modules/portfolio/js/controllers/Default', [
 ], (
     Marionette
     Wreqr
-    API
     Layout
     Header
     PortfolioItemView
@@ -33,33 +31,25 @@ define 'app/modules/portfolio/js/controllers/Default', [
         constructor: (@options) ->
             @channelName = @options?.channelName or @channelName
             @vent = Wreqr.radio.channel(@channelName).vent
-            # @setEvents()
             @
-
-        # setEvents: ->
-        #     @vent.on 'modal:open:post', @openPostModal
-
-        # openPostModal: (data) =>
-        #     @openModal new PostModal model: data?.model ? new Post
-
-        # openModal: (view) =>
-        #     @layout.getRegion('modal').show view if view
 
         showPortfolio: ->
             @initLayout()
             portfolio = new Portfolio
-            portfolio.fetch() 
+            portfolio.fetch()
+            @layout.getRegion('header').show new Header channelName: @channelName
             @layout.getRegion('content').show new PortfolioView collection: portfolio, channelName: @channelName 
 
         showPortfolioItem: (id) ->
             @initLayout()
             portfolioItem = new PortfolioItem id: id
-            portfolioItem.fetch() 
-            @layout.getRegion('content').show new PortfolioItemView model: portfolioItem              
+            portfolioItem.fetch()
+            @layout.getRegion('header').reset()
+            @layout.getRegion('content').show new PortfolioItemView model: portfolioItem, channelName: @channelName
 
         initLayout: ->
             if not @layout
                 @layout = new Layout
                 @layout.render()
                 @layout.getRegion('header').show new Header channelName: @channelName
-   
+

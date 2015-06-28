@@ -1,4 +1,4 @@
-define 'app/modules/portfolio/js/views/Layout', ['marionette'], (Marionette) ->
+define 'app/modules/home/js/views/Layout', ['marionette'], (Marionette) ->
 
     class Layout extends Marionette.LayoutView
 
@@ -9,3 +9,4 @@ define 'app/modules/portfolio/js/views/Layout', ['marionette'], (Marionette) ->
         regions:
             header: '.fc-header'
             content: '.fc-content'
+            modal: '.fc-modal'

@@ -1,10 +1,10 @@
-define 'app/modules/portfolio/js/views/Header', ['marionette', 'wreqr', 'tpl!app/modules/portfolio/templates/header.html'], (Marionette, Wreqr, tpl) ->
+define 'app/modules/home/js/views/Header', ['marionette', 'wreqr', 'tpl!app/modules/home/templates/header.html'], (Marionette, Wreqr, tpl) ->
 
     class Header extends Marionette.ItemView
 
-        className: 'fc-portfolio-header'
+        className: 'fc-home-header'
 
-        channelName: 'portfolio'
+        channelName: 'home'
 
         vent: null
 

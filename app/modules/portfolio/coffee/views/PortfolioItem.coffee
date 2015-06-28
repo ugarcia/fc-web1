@@ -1,6 +1,14 @@
-define 'app/modules/portfolio/js/views/PortfolioItem', ['marionette', 'wreqr', 'tpl!app/modules/portfolio/templates/portfolio-item.html'], (Marionette, Wreqr, tpl) ->
+define 'app/modules/portfolio/js/views/PortfolioItem', [
+  'marionette'
+  'wreqr'
+  'tpl!app/modules/portfolio/templates/portfolio-item.html'
+], (Marionette, Wreqr, tpl) ->
 
     class PortfolioItem extends Marionette.ItemView
+
+        tagName: 'article'
+
+        className: 'fc-portfolio-item-container'
 
         channelName: 'portfolio'
 
@@ -13,13 +21,7 @@ define 'app/modules/portfolio/js/views/PortfolioItem', ['marionette', 'wreqr', '
         modelEvents:
             'change': 'render'
 
-        events:
-            'click .fc-post-edit-trigger': 'editPostHandler'
-
         initialize: (@options) ->
             @channelName = @options?.channelName or @channelName
             @vent = Wreqr.radio.channel(@channelName).vent            
-
-        editPostHandler: (evt) ->
-            @vent.trigger 'modal:open:post', model: @model
 

@@ -1,15 +1,107 @@
 .fc-web1 {
-    
-    .fc-fixed-bg {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        pointer-events: none;
-        opacity: 0.35;
-        background: url('/app/modules/main/img/bg.jpg') no-repeat;
-        background-size: 100% 100%;
+
+  .fc-fixed-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.5;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transition: all 1s;
+    animation-delay: 0s;
+    animation-duration: 30s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+    &.fc-bg-1 {
+      background-image: url('/app/modules/main/img/libra_bg_01.jpg');
+      animation-name: bg-animation-1;
     }
+
+    &.fc-bg-2 {
+      background-image: url('/app/modules/main/img/libra_bg_02.jpg');
+      animation-name: bg-animation-2;
+    }
+
+    &.fc-bg-3 {
+      background-image: url('/app/modules/main/img/libra_bg_03.jpg');
+      animation-name: bg-animation-3;
+    }
+  }
+}
+
+@keyframes bg-animation-1 {
+  0% {
+    opacity: 0.5;
+  }
+  20% {
+    opacity: 0.5;
+  }
+  33% {
+    opacity: 0;
+  }
+  53% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0;
+  }
+  86% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes bg-animation-2 {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 0.5;
+  }
+  53% {
+    opacity: 0.5;
+  }
+  66% {
+    opacity: 0;
+  }
+  86% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes bg-animation-3 {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0;
+  }
+  33% {
+    opacity: 0;
+  }
+  53% {
+    opacity: 0;
+  }
+  66% {
+    opacity: 0.5;
+  }
+  86% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
 }

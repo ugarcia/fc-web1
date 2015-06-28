@@ -1,8 +1,8 @@
-define 'app/modules/portfolio/js/Module', ['marionette', 'app/js/Application', 'app/modules/portfolio/js/routers/Default'], (Marionette, Application, DefaultRouter) ->
+define 'app/modules/home/js/Module', ['marionette', 'app/js/Application', 'app/modules/home/js/routers/Default'], (Marionette, Application, DefaultRouter) ->
 
-    class PortfolioModule extends Marionette.Module
+    class homeModule extends Marionette.Module
 
-        channelName: 'portfolio'
+        channelName: 'home'
 
         startWithParent: true
 
@@ -16,4 +16,4 @@ define 'app/modules/portfolio/js/Module', ['marionette', 'app/js/Application', '
 
         onStop: (options) ->
 
-    Application.module "Portfolio", PortfolioModule
+    Application.module "Home", homeModule

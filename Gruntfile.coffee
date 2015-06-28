@@ -57,7 +57,13 @@ module.exports = (grunt) ->
         src: ['**/*.coffee']
         dest: 'app/modules/portfolio/js/'
         ext: '.js'
-
+      home:
+        expand: true
+        flatten: false
+        cwd: 'app/modules/home/coffee/'
+        src: ['**/*.coffee']
+        dest: 'app/modules/home/js/'
+        ext: '.js'
     requirejs:
       compile:
         options:
@@ -156,6 +162,7 @@ module.exports = (grunt) ->
     'coffee:main'
     'coffee:cms'
     'coffee:portfolio'
+    'coffee:home'
   ]
 
   grunt.registerTask 'build', [

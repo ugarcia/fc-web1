@@ -8,7 +8,7 @@ define 'app/modules/portfolio/js/models/PortfolioItem', ['backbone', 'app/module
             caption: ''
             link: ''            
             title: ''          
-            content: '' # String (modified by read_more query var)
+            content: ''
           
         # Overrided Backbone sync for a non Restful API
         # @param method [String] The CRUD action method for the model data: 'create', 'read', 'update' or 'delete' 

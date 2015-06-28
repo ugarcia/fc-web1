@@ -1,6 +1,12 @@
-define 'app/modules/portfolio/js/views/Portfolio', ['marionette', 'wreqr', 'app/modules/portfolio/js/views/PortfolioItem', 'tpl!app/modules/portfolio/templates/portfolio-item.html'], (Marionette, Wreqr, PortfolioItemView, tpl) ->
+define 'app/modules/portfolio/js/views/Portfolio', [
+  'marionette'
+  'wreqr'
+  'app/modules/portfolio/js/views/PortfolioItemSlot'
+], (Marionette, Wreqr, PortfolioItemView) ->
 
     class Portfolio extends Marionette.CollectionView
+
+        className: 'row fc-portfolio-items'
 
         channelName: 'portfolio'
 

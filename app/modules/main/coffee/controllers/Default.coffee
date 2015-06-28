@@ -1,5 +1,6 @@
 define 'app/modules/main/js/controllers/Default', [
     'marionette'
+    'backbone'
     'app/modules/main/js/views/Layout'
     'app/modules/main/js/views/Navbar'
     'app/modules/main/js/views/Footer'
@@ -7,6 +8,7 @@ define 'app/modules/main/js/controllers/Default', [
     'app/modules/main/js/views/Content'
 ], (
     Marionette
+    Backbone
     Layout
     Navbar
     Footer
@@ -27,5 +29,11 @@ define 'app/modules/main/js/controllers/Default', [
             if not @layout
                 @layout = new Layout
                 @layout.render()
-                @layout.getRegion('navbar').show new Navbar
+                path = @getPath()
+                @layout.getRegion('navbar').show new Navbar model: new Backbone.Model path: path
                 @layout.getRegion('footer').show new Footer
+
+        getPath: ->
+          path = window.location.pathname
+          /^\/([^/?]*).*$/.exec(path)[1]
+

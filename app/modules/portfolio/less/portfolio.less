@@ -1,0 +1,83 @@
+.fc-web1 {
+
+  .fc-portfolio-header {
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      width: 100%;
+      text-transform: uppercase;
+      text-shadow: 3px 3px 5px #000;
+      font-size: 5rem;
+      margin: 2rem auto;
+    }
+  }
+
+  .fc-portfolio-item {
+
+    h1 {
+      text-align: center;
+      color: #ffffff;
+      width: 100%;
+      margin: 1rem auto;
+      text-transform: uppercase;
+      text-shadow: 3px 3px 5px #000;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    .fc-portfolio-item-content {
+      background-color: rgba(0, 0, 0, .5);
+      color: #ffffff;
+      margin: 1rem auto;
+      text-align: left;
+      padding: 1rem;
+      line-height: 2rem;
+      width: 100%;
+
+      h6 {
+        text-decoration: underline;
+        font-size: 2rem;
+      }
+    }
+
+    .fc-portfolio-item-link {
+      width: 20rem;
+      margin: 1rem auto;
+      text-align: center;
+      display: block;
+    }
+
+    &.fc-portfolio-item-slot {
+      height: 32rem;
+      position: relative;
+      margin-bottom: 3rem;
+
+      img {
+        height: 100%;
+      }
+
+      h4 {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, .6);
+        padding: 1rem;
+        margin: 0 auto;
+        text-align: center;
+        transition: all 0.5s;
+        width: 100%;
+        color: #ffffff;
+      }
+
+      &:hover {
+
+        h4 {
+          display: block;
+        }
+      }
+    }
+  }
+}
