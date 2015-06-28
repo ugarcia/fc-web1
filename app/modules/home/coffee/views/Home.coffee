@@ -1,11 +1,11 @@
-define 'app/modules/home/js/views/Home', ['marionette', 'tpl!app/modules/home/templates/content.html'], (Marionette, tpl) ->
+define 'app/modules/home/js/views/Home', ['app/js/BaseLayout', 'tpl!app/modules/home/templates/content.html'], (BaseLayout, tpl) ->
 
-    class Home extends Marionette.LayoutView
+  class Home extends BaseLayout
 
-#        el: 'body'
+    el: '.fc-content'
 
-        template: (model) -> tpl model: model or {}
+    template: (model) -> tpl model: model or {}
 
-        regions:
-            portfolio: '.fc-portfolio'
-            misc: '.fc-misc'
+    regions:
+      portfolio: '.fc-home-portfolio'
+      misc: '.fc-home-misc'

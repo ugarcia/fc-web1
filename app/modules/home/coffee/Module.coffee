@@ -1,19 +1,14 @@
-define 'app/modules/home/js/Module', ['marionette', 'app/js/Application', 'app/modules/home/js/routers/Default'], (Marionette, Application, DefaultRouter) ->
+define 'app/modules/home/js/Module', [
+  'app/js/BaseModule'
+  'app/js/Application'
+  'app/modules/home/js/routers/Default'
+], (BaseModule, Application, DefaultRouter) ->
 
-    class homeModule extends Marionette.Module
+  class homeModule extends BaseModule
 
-        channelName: 'home'
+    channelName: 'home'
 
-        startWithParent: true
+    setRouters: ->
+      @routers.DefaultRouter = new DefaultRouter channelName: @channelName
 
-        initialize: (options, moduleName, app) ->
-            @channelName = options?.channelName or @channelName
-            @routers or= {}
-            @routers.DefaultRouter = new DefaultRouter  channelName: @channelName
-            
-        onStart: (options) ->
-            console.log "Module #{@moduleName} Started", @
-
-        onStop: (options) ->
-
-    Application.module "Home", homeModule
+  Application.module "Home", homeModule

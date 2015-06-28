@@ -1,41 +1,30 @@
 define 'app/modules/home/js/controllers/Default', [
-    'marionette'
-    'wreqr'
-    'app/modules/home/js/views/Layout'
-    'app/modules/home/js/views/Header'
-    'app/modules/home/js/views/Home'
+  'app/js/BaseController'
+  'app/modules/home/js/views/Layout'
+  'app/modules/home/js/views/Header'
+  'app/modules/home/js/views/Home'
 ], (
-    Marionette
-    Wreqr
-    Layout
-    Header
-    HomeView
+  BaseController
+  Layout
+  Header
+  HomeView
 ) ->
 
-    class DefaultController extends Marionette.Controller
+  class DefaultController extends BaseController
 
-        channelName: 'home'
+    channelName: 'home'
 
-        vent: null
+    mainLayoutClass: Layout
 
-        layout: null
+    homeLayout: HomeView
 
-        options: null
+    showHome: ->
+      @initLayout()
+      @layout.getRegion('header').show new Header channelName: @channelName
+      @homeLayout = new HomeView channelName: @channelName
+      @homeLayout.render()
+      @vent.trigger 'module:request', request: 'view:portfolio-carousel'
 
-        constructor: (@options) ->
-            @channelName = @options?.channelName or @channelName
-            @vent = Wreqr.radio.channel(@channelName).vent
-            @
-
-        showhome: ->
-            @initLayout()
-            @layout.getRegion('header').show new Header channelName: @channelName
-            homeContent = @layout.getRegion('content')
-            homeContent.show new HomeView
-            # TODO: HEre messaging with Portfolio module
-            homeContent.getRegion('portfolio').reset()
-
-        initLayout: ->
-            if not @layout
-                @layout = new Layout
-                @layout.render()
+    setEvents: ->
+      @vent.on 'response:view:portfolio-carousel', (view) =>
+        @homeLayout.getRegion('portfolio').show view

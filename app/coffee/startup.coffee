@@ -26,7 +26,7 @@ require ['modernizr', 'bootstrap'], ->
     require [
         'app/js/Application'
         'app/modules/main/js/Module'
-        'app/modules/cms/js/Module'
+#        'app/modules/cms/js/Module'
         'app/modules/portfolio/js/Module'
         'app/modules/home/js/Module'
     ], (Application) -> Application.start()     

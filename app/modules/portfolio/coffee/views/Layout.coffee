@@ -1,11 +1,7 @@
-define 'app/modules/portfolio/js/views/Layout', ['marionette'], (Marionette) ->
+define 'app/modules/portfolio/js/views/Layout', ['app/js/BaseLayout'], (BaseLayout) ->
 
-    class Layout extends Marionette.LayoutView
+  class Layout extends BaseLayout
 
-        template: false
-
-        el: 'body'
-
-        regions:
-            header: '.fc-header'
-            content: '.fc-content'
+    regions:
+      header: '.fc-header'
+      content: '.fc-content'

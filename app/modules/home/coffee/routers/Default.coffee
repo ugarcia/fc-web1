@@ -1,8 +1,11 @@
-define 'app/modules/home/js/routers/Default', ['marionette', 'app/modules/home/js/controllers/Default'], (Marionette, Controller) ->
+define 'app/modules/home/js/routers/Default', ['app/js/BaseRouter', 'app/modules/home/js/controllers/Default'], (BaseRouter, Controller) ->
 
-    class Default extends Marionette.AppRouter
+  class Default extends BaseRouter
 
-        controller: new Controller channelName: @options?.channelName
-        
-        appRoutes:
-            "home": "showhome"
+    channelName: 'home'
+
+    controller: new Controller channelName: @options?.channelName
+
+    appRoutes:
+        "": "showHome"
+        "home": "showHome"
