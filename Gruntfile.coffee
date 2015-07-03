@@ -142,6 +142,16 @@ module.exports = (grunt) ->
         src: ['**/*.html']
         dest: 'build/'
 
+    imagemin:
+      build:
+        files: [
+          {
+            expand: true
+            src: ['app/**/*.{png,jpg,gif}']
+            dest: 'build/'
+          }
+        ]
+
 
   grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'grunt-myth'
@@ -153,6 +163,7 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-contrib-htmlmin'
   grunt.loadNpmTasks 'grunt-contrib-cssmin'
+  grunt.loadNpmTasks 'grunt-contrib-imagemin'
 
   grunt.registerTask 'default', [
     'css'
@@ -180,5 +191,6 @@ module.exports = (grunt) ->
     'copy:build'
     'uglify:build'
     'htmlmin:build'
+    'imagemin:build'
     'clean:requirelog'
   ]
