@@ -18,7 +18,7 @@ module.exports = (grunt) ->
     cssmin:
       css:
         files:
-          'app/css/styles.css': ['app/css/styles.css']
+          'app/css/styles.css': ['bower_components/bootstrap/dist/css/bootstrap.min.css', 'app/css/styles.css']
 
     watch:
       less:
@@ -64,26 +64,32 @@ module.exports = (grunt) ->
         src: ['**/*.coffee']
         dest: 'app/modules/home/js/'
         ext: '.js'
+
+
     requirejs:
       compile:
         options:
-          appDir: "app"
+          appDir: "."
           baseUrl: "."
-          dir: "./build"
+          dir: "build"
           modules: [
               {
                   name: "app/js/startup"
               }
           ]
+          skipDirOptimize: true
           removeCombined: true
           preserveLicenseComments: false
+          optimizeCss: 'none'
           paths:
             modernizr: 'bower_components/modernizr/modernizr'
             jquery: "bower_components/jquery/dist/jquery.min"
             bootstrap: "bower_components/bootstrap/dist/js/bootstrap.min"
             underscore: "bower_components/underscore/underscore"
             backbone: 'bower_components/backbone/backbone'
+            wreqr: 'bower_components/backbone.wreqr/lib/backbone.wreqr.min'
             marionette: 'bower_components/marionette/lib/backbone.marionette.min'
+            ckeditor: 'bower_components/ckeditor/ckeditor',
             tpl: 'bower_components/requirejs-tpl/tpl'
             app: 'app'
           shim:
@@ -102,11 +108,13 @@ module.exports = (grunt) ->
       build:
         files: [
           {
+            cwd: 'bower_components/bootstrap/dist/fonts/'
             src:  [
-              'bower_components/bootstrap/dist/css/**'
-              'bower_components/bootstrap/dist/fonts/**'
+#              'bower_components/bootstrap/dist/css/**'
+#              'bower_components/bootstrap/dist/fonts/**'
+              '**'
             ]
-            dest: 'build/'
+            dest: 'build/app/fonts/'
             expand:  true
           }
         ]

@@ -5,8 +5,8 @@ define 'app/modules/portfolio/js/api/API', ['jquery', 'underscore'], ($, _) ->
 
   $.ajaxSetup
     crossDomain: true
-    xhrFields:
-      withCredentials: true
+#    xhrFields:
+#      withCredentials: true
 
   # Auto instantiated class for requests to LogQuest Wordpress JSON API
   # The server JSON responses are wrapped into an object which also contains a 'status' field.
