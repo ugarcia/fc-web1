@@ -2,6 +2,6 @@ define 'app/modules/portfolio/js/views/Layout', ['app/js/BaseLayout'], (BaseLayo
 
   class Layout extends BaseLayout
 
-    # regions:
-    #   header: '.fc-header'
-    #   content: '.fc-content'
+    regions:
+       header: '.fc-header'
+       content: '.fc-content'

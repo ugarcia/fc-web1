@@ -35,7 +35,7 @@ define 'app/modules/portfolio/js/controllers/Default', [
       @initLayout()
       portfolioItem = new PortfolioItem id: id
       portfolioItem.fetch()
-      @layout.getRegion('header').reset()
+      @layout.getRegion('header').empty()
       @layout.getRegion('content').show new PortfolioItemView model: portfolioItem, channelName: @channelName
 
     setEvents: ->
