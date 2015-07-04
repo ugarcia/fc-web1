@@ -22,8 +22,8 @@ define 'app/js/Application', ['backbone', 'marionette'], (Backbone, Marionette) 
         @submodules[data.target].vent.trigger 'response', data
 
       @on 'start', ->
-        Backbone.history.start
-          pushState: true
-          root: '/'
+        Backbone.history.start()
+          # pushState: true
+          # root: '/'
 
   window.Application or= new Application name: 'Frontcoder Web', channelName: 'app'

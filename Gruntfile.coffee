@@ -105,15 +105,20 @@ module.exports = (grunt) ->
               exports: "Marionette"
             
     copy:
+      default:
+        files: [
+          {
+            cwd: 'bower_components/bootstrap/dist/fonts/'
+            src:  '**'
+            dest: 'app/fonts/'
+            expand:  true
+          }
+        ]
       build:
         files: [
           {
             cwd: 'bower_components/bootstrap/dist/fonts/'
-            src:  [
-#              'bower_components/bootstrap/dist/css/**'
-#              'bower_components/bootstrap/dist/fonts/**'
-              '**'
-            ]
+            src: '**'
             dest: 'build/app/fonts/'
             expand:  true
           }
@@ -168,6 +173,7 @@ module.exports = (grunt) ->
   grunt.registerTask 'default', [
     'css'
     'js'
+    'copy:default'
   ]
 
   grunt.registerTask 'css', [

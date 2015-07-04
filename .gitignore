@@ -5,3 +5,4 @@ bower_components
 node_modules
 *.js
 *.css
+app/fonts/glyphicons*.*
