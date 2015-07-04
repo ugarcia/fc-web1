@@ -25,5 +25,7 @@ define 'app/js/Application', ['backbone', 'marionette'], (Backbone, Marionette) 
         Backbone.history.start()
           # pushState: true
           # root: '/'
+        if window.location.hash.indexOf('#!') is -1
+          window.location.href = "#{window.location.origin}/#!#{window.location.pathname}"
 
   window.Application or= new Application name: 'Frontcoder Web', channelName: 'app'

@@ -7,5 +7,5 @@ define 'app/modules/portfolio/js/routers/Default', ['app/js/BaseRouter', 'app/mo
     controller: new Controller channelName: @options?.channelName
 
     appRoutes:
-      "portfolio": "showPortfolio"
-      "portfolio/:id": "showPortfolioItem"
+      "!/portfolio": "showPortfolio"
+      "!/portfolio/:id": "showPortfolioItem"

@@ -7,5 +7,5 @@ define 'app/modules/home/js/routers/Default', ['app/js/BaseRouter', 'app/modules
     controller: new Controller channelName: @options?.channelName
 
     appRoutes:
-        "": "showHome"
+        "!/": "showHome"
         "home": "showHome"
