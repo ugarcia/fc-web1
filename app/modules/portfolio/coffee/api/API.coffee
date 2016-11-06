@@ -1,6 +1,7 @@
 define 'app/modules/portfolio/js/api/API', ['jquery', 'underscore'], ($, _) ->
 
-  url = 'https://cms.frontcoder.local/api'
+  cmsHost = 'cms.' + window.location.hostname
+  url = window.location.protocol + '//' + cmsHost + '/api'
   DEBUG = no
 
   $.ajaxSetup
